@@ -1,0 +1,17 @@
+theory loop
+begin
+
+rule starting:
+  [ Fr(x) ]
+--[ Start(x) ]->
+  [ A(x) ]
+
+rule looping:
+  [ A(x) ]
+--[ Loop(x) ]->
+  [ A(x) ]
+
+lemma initalize:
+  "All x #i. Loop(x)@i ==> Ex #j. Start(x)@j"
+
+end

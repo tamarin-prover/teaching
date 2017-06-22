@@ -1,0 +1,27 @@
+rule R_1:
+  let m1 = aenc{'1', ni, I}pk(ltkR)
+      m2 = aenc{'2', ni, ~nr, $R}pkI
+  in
+    [ !Ltk($R, ltkR)
+    , In( m1 )
+    , !Pk(I, pkI)
+    , Fr(~nr)
+    ]
+  --[ IN_R_1_ni( ni, m1 )
+    , OUT_R_1( m2 )
+    , Running(I, $R, <'init',ni,~nr>)
+    ]->
+    [ Out( m2 )
+    , St_R_1($R, I, ni, ~nr)
+    ]
+
+rule R_2:
+    [ St_R_1(R, I, ni, nr)
+    , !Ltk(R, ltkR)
+    , In( aenc{'3', nr}pk(ltkR) )
+    ]
+  --[ Commit (R, I, <'resp',ni,nr>)
+    ]->
+    [ Secret(R,I,nr)
+    , Secret(R,I,ni)
+    ]

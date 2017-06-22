@@ -1,0 +1,83 @@
+theory NAXOS_02_simple_excl1
+begin
+
+builtins: diffie-hellman
+
+section{* NAXOS *}
+
+/*
+ * Protocol:	NAXOS
+ * Modeler: 	Cas Cremers, Benedikt Schmidt
+ * Date: 	January 2012/April 2012
+ * Source:	"Stronger Security of Authenticated Key Exchange"
+ * 		LaMacchia, Lauter, Mityagin, 2007
+ * Property: 	secrecy wrt adversary who can compromise other long-term keys
+ *
+ * Status: 	Working
+ */
+
+functions: h1/1
+functions: h2/1
+
+/* Protocol rules */
+
+/* Generate long-term keypair */
+rule generate_ltk:
+   let pkA = 'g'^~lkA 
+   in
+   [ Fr(~lkA) ] 
+   -->
+   [ !Ltk( $A, ~lkA ), !Pk( $A, pkA ), Out( pkA ) ]
+
+/* Initiator */
+rule Init_1:
+  let exI = h1(<~eskI, ~lkI >)
+      hkI = 'g'^exI
+  in
+   [   Fr( ~eskI ), !Ltk( $I, ~lkI ) ]
+   -->
+   [   Init_1( ~eskI, $I, $R, ~lkI, hkI )
+     , Out( hkI ) ]
+
+rule Init_2:
+  let pkR = 'g'^~lkR
+      exI = h1(< ~eskI, ~lkI >)
+      kI    = h2(<         pkR^exI, Y^exI, $I, $R >) 
+      // kI = h2(< Y^~lkI, pkR^exI, Y^exI, $I, $R >) 
+  in
+   [   Init_1( ~eskI, $I, $R, ~lkI , hkI), !Pk( $R, pkR ), In( Y ) ]
+   --[ Accept( ~eskI, $I, $R, kI) ]->
+   [ ]
+
+/* Responder */
+rule Resp_1:
+  let pkI = 'g'^~lkI
+      exR = h1(< ~eskR, ~lkR >)
+      hkr = 'g'^exR
+      kR    = h2(<          X^~lkR, X^exR, $I, $R >) 
+      // kR = h2(< pkI^exR, X^~lkR, X^exR, $I, $R >) 
+  in
+   [   Fr( ~eskR ), !Ltk($R, ~lkR), !Pk($I, pkI), In( X ) ]
+   --[ Accept( ~eskR, $R, $I, kR ) ]->
+   [   Out( hkr ) ]
+
+/* Key Reveals */
+rule Ltk_reveal:
+   [ !Ltk($A, lkA) ] --[ LtkRev($A) ]-> [ Out(lkA) ]
+
+lemma key_secrecy:
+  /* 
+   * If A and B are honest, the adversary doesn't learn the session key
+   */
+  "(All #i1 Test A B k.
+    (
+      Accept(Test, A, B, k) @ i1 
+      &
+      not ( (Ex #ia . LtkRev  ( A ) @ ia ) 
+          | (Ex #ib . LtkRev  ( B ) @ ib )
+          )
+    )
+    ==> not (Ex #i2. K( k ) @ i2 )
+  )"
+
+end

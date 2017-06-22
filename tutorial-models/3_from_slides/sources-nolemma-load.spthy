@@ -1,0 +1,101 @@
+theory sourcesNoLemmaLoad
+begin
+
+builtins: asymmetric-encryption
+
+// Public key infrastructure
+rule Register_pk:
+  [ Fr(~ltkA) ]
+  -->
+  [ !Ltk($A, ~ltkA), !Pk($A, pk(~ltkA)), Out(pk(~ltkA)) ]
+
+
+/* We formalize the following protocol
+  protocol {
+    1. I -> R: {ni,I}pk(R)
+    2. I <- R: {ni}pk(I)
+  }
+*/
+
+rule I_1:
+  let m1 = aenc{~ni, $I}pkR
+  in
+    [ Fr(~ni) , !Pk($R, pkR) ]
+  --[ OUT_I_1(m1) ]->
+    [ Out( m1 ) ]
+
+rule R_1:
+  let m1 = aenc{ni, I}pk(ltkR)
+      m2 = aenc{ni}pkI
+  in
+    [ !Ltk($R, ltkR) , In( m1 ), !Pk(I, pkI) ]
+  --[ IN_R_1_ni( ni, m1 ) , Finish() ]->
+    [ Out( m2 ) ]
+
+lemma show:
+  exists-trace "Ex #i. Finish()@i"
+simplify
+solve( !Ltk( $R, ltkR ) ▶₀ #i )
+  case Register_pk
+  solve( !Pk( I, pkI ) ▶₂ #i )
+    case Register_pk
+    solve( !KU( aenc(<ni, $A>, pk(~ltkA)) ) @ #vk )
+      case I_1
+      by sorry /* removed */
+    next
+      case R_1_case_1
+      solve( !KU( aenc(<<ni, $A>, $R>, pk(~ltkA.2)) ) @ #vk.1 )
+        case R_1_case_1
+        solve( !KU( aenc(<<<ni, $A>, $R>, $R.1>, pk(~ltkA.3)) ) @ #vk.2 )
+          case R_1_case_1
+          solve( !KU( aenc(<<<<ni, $A>, $R>, $R.1>, $R.2>, pk(~ltkA.4))
+                 ) @ #vk.3 )
+            case R_1_case_1
+            by sorry
+          next
+            case R_1_case_2
+            by sorry
+          next
+            case c_aenc
+            by sorry
+          qed
+        next
+          case R_1_case_2
+          by sorry
+        next
+          case c_aenc
+          by sorry
+        qed
+      next
+        case R_1_case_2
+        by sorry
+      next
+        case c_aenc
+        by sorry
+      qed
+    next
+      case R_1_case_2
+      by sorry
+    next
+      case c_aenc
+      solve( !KU( pk(~ltkA) ) @ #vk.2 )
+        case R_1
+        by sorry
+      next
+        case Register_pk
+        by sorry /* removed */
+      next
+        case c_pk
+        solve( !KU( ~ltkA ) @ #vk.5 )
+          case R_1
+          solve( !KU( ~ltkA.2 ) @ #vk.7 )
+            case R_1
+            by sorry /* removed */
+          qed
+        qed
+      qed
+    qed
+  qed
+qed
+
+end

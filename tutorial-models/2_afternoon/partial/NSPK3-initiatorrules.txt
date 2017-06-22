@@ -1,0 +1,31 @@
+rule I_1:
+  let m1 = aenc{'1', ~ni, $I}pkR
+  in
+    [ Fr(~ni)
+    , !Pk($R, pkR)
+    ]
+  --[ OUT_I_1(m1)
+    ]->
+    [ Out( m1 )
+    , St_I_1($I, $R, ~ni)
+    ]
+
+rule I_2:
+  let m2 = aenc{'2', ni, nr}pk(ltkI)
+      m3 = aenc{'3', nr}pkR
+  in
+    [ St_I_1(I, R, ni)
+    , !Ltk(I, ltkI)
+    , In( m2 )
+    , !Pk(R, pkR)
+    ]
+  --[ IN_I_2_nr( nr, m2)
+    , Commit (I, R, <'init',ni,nr>)  // need to log identities explicitly to
+    , Running(R, I, <'resp',ni,nr>)  // specify that they must not be
+                                     // compromised in the property.
+    ]->
+    [ Out( m3 )
+    , Secret(I,R,nr)
+    , Secret(I,R,ni)
+    ]
+

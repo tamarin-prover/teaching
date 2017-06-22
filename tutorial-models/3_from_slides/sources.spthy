@@ -1,0 +1,48 @@
+theory sources
+begin
+
+builtins: asymmetric-encryption
+
+// Public key infrastructure
+rule Register_pk:
+  [ Fr(~ltkA) ]
+  -->
+  [ !Ltk($A, ~ltkA), !Pk($A, pk(~ltkA)), Out(pk(~ltkA)) ]
+
+
+/* We formalize the following protocol
+  protocol {
+    1. I -> R: {ni,I}pk(R)
+    2. I <- R: {ni}pk(I)
+  }
+*/
+
+rule I_1:
+  let m1 = aenc{~ni, $I}pkR
+  in
+    [ Fr(~ni) , !Pk($R, pkR) ]
+  --[ OUT_I_1(m1) ]->
+    [ Out( m1 ) ]
+
+rule R_1:
+  let m1 = aenc{ni, I}pk(ltkR)
+      m2 = aenc{ni}pkI
+  in
+    [ !Ltk($R, ltkR) , In( m1 ), !Pk(I, pkI) ]
+  --[ IN_R_1_ni( ni, m1 ) ]->
+    [ Out( m2 ) ]
+
+
+lemma types [sources]:
+  "
+ (All ni m1 #i.
+       IN_R_1_ni( ni, m1) @ i
+       ==>
+       ( (Ex #j. KU(ni) @ j & j < i)
+       | (Ex #j. OUT_I_1( m1 ) @ j)
+       )
+    )
+  "
+
+
+end
