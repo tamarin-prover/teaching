@@ -13,6 +13,8 @@ At EuroSnP/Eurocrypt 2017 we gave a one day tutorial.
     [(Libreoffice source file)](Tamarin-Tutorial-afternoon.odp) 
     
   * [Tamarin model files](tutorial-models)
+  
+We are expecting to update this material over time and improve both slides and speaker notes.
 
 ### Authors
 
