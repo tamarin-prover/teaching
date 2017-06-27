@@ -1,4 +1,4 @@
-# Teaching
+# Teaching Materials for the Tamarin Prover
 
 This repository contains teaching materials related to the Tamarin Prover.
 
