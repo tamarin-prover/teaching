@@ -1,6 +1,7 @@
 # Teaching Materials for the Tamarin Prover
 
-This repository contains teaching materials related to the Tamarin Prover.
+This repository contains teaching materials related to the [Tamarin Prover](http://tamarin-prover.github.io/).
+These materials complement the official [Tamarin manual](https://tamarin-prover.github.io/manual/).
 
 ## One-day tutorial
 
