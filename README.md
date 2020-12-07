@@ -5,7 +5,7 @@ These materials complement the official [Tamarin manual](https://tamarin-prover.
 
 ## One-day tutorial
 
-At EuroSnP/Eurocrypt 2017 we gave a one day tutorial.
+(Originally given at EuroSnP/Eurocrypt 2017)
 
   * [Morning slides](Tamarin-Tutorial-morning.pdf)
     [(Libreoffice source file)](Tamarin-Tutorial-morning.odp) 
@@ -16,11 +16,13 @@ At EuroSnP/Eurocrypt 2017 we gave a one day tutorial.
   * [Tamarin model files](tutorial-models)
     [(ZIP archive version)](tutorial-models/tutorial-models.zip)
   
-We are expecting to update this material over time and improve both slides and speaker notes.
+**Authors:** David Basin, [Cas Cremers](https://cispa.saarland/group/cremers/index.html), Jannik Dreier, and Ralf Sasse.
 
-### Authors
+## Toy protocol exercise 
 
-David Basin, [Cas Cremers](https://www.cs.ox.ac.uk/people/cas.cremers/intro.html), Jannik Dreier, and Ralf Sasse.
+[Tamarin toy protocol exercise](https://github.com/benjaminkiesl/tamarin_toy_protocol)
+
+**Author:** Benjamin Kiesl
 
 ## License
 
