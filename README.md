@@ -3,6 +3,14 @@
 This repository contains teaching materials related to the [Tamarin Prover](http://tamarin-prover.github.io/).
 These materials complement the official [Tamarin manual](https://tamarin-prover.github.io/manual/).
 
+## Understanding dependency graphs (handout)
+
+The following PDF can be used as a reference handout for understanding dependency graphs.
+
+ * [Handout: dependency graphs](handouts/Tamarin-basics-dependency-graphs.pdf)
+  
+(Update coming with more explanation of specific adversary nodes)
+
 ## One-day tutorial
 
 (Originally given at EuroSnP/Eurocrypt 2017)
