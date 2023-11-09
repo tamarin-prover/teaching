@@ -23,6 +23,11 @@ The following PDF can be used as a reference handout for understanding dependenc
     
   * [Tamarin model files](tutorial-models)
     [(ZIP archive version)](tutorial-models/tutorial-models.zip)
+
+  * Handouts to print:
+    * [Exercises](handouts/Handout-Exercise-I-II.pdf)
+    * [Naxos protocol description](handouts/Handout-Naxos.pdf)
+    * [Dependency graphs](handouts/Tamarin-basics-dependency-graphs.pdf)
   
 **Authors:** David Basin, [Cas Cremers](https://cispa.saarland/group/cremers/index.html), Jannik Dreier, and Ralf Sasse.
 
