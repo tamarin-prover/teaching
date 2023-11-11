@@ -3,7 +3,9 @@
 This repository contains teaching materials related to the [Tamarin Prover](http://tamarin-prover.github.io/).
 These materials complement the official [Tamarin manual](https://tamarin-prover.github.io/manual/).
 
-## Understanding dependency graphs (handout)
+## General support
+
+### Understanding dependency graphs (handout)
 
 The following PDF can be used as a reference handout for understanding dependency graphs.
 
@@ -11,14 +13,19 @@ The following PDF can be used as a reference handout for understanding dependenc
   
 (Update coming with more explanation of specific adversary nodes)
 
-## One-day tutorial
+## Tutorials
+
+The core Tamarin team and other contributors have developed different tutorials over time. 
+Below you can find three tutorials.
+
+### 1. One-day tutorial
 
 (Originally given at EuroSnP/Eurocrypt 2017)
 
-  * [Morning slides](Tamarin-Tutorial-morning.pdf)
+  * [Morning slides PDF](Tamarin-Tutorial-morning.pdf)
     [(Libreoffice source file)](Tamarin-Tutorial-morning.odp) 
 
-  * [Afternoon slides](Tamarin-Tutorial-afternoon.pdf)
+  * [Afternoon slides PDF](Tamarin-Tutorial-afternoon.pdf)
     [(Libreoffice source file)](Tamarin-Tutorial-afternoon.odp) 
     
   * [Tamarin model files](tutorial-models)
@@ -31,11 +38,18 @@ The following PDF can be used as a reference handout for understanding dependenc
   
 **Authors:** David Basin, [Cas Cremers](https://cispa.saarland/group/cremers/index.html), Jannik Dreier, and Ralf Sasse.
 
-## Toy protocol exercise 
+### 2. Toy protocol exercise
 
-[Tamarin toy protocol exercise](https://github.com/benjaminkiesl/tamarin_toy_protocol)
+ - [Tamarin toy protocol exercise](https://github.com/benjaminkiesl/tamarin_toy_protocol).
 
 **Author:** Benjamin Kiesl
+
+### 3. Tamarin workshop
+
+ - [Tamarin workshop (2-4 hours)](https://github.com/felixlinker/tamarin-workshop).
+
+**Author:** Felix Linker
+
 
 ## License
 
