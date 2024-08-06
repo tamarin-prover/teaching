@@ -16,7 +16,7 @@ The following PDF can be used as a reference handout for understanding dependenc
 ## Tutorials
 
 The core Tamarin team and other contributors have developed different tutorials over time. 
-Below you can find three tutorials.
+Below you can find four tutorials.
 
 ### 1. One-day tutorial
 
@@ -49,6 +49,13 @@ Below you can find three tutorials.
  - [Tamarin workshop (2-4 hours)](https://github.com/felixlinker/tamarin-workshop).
 
 **Author:** Felix Linker
+
+### 4. One-day Tamarin workshop
+
+ - [Tamarin workshop](https://github.com/sgiampietro/tamarin-tutorial) given at Croatia Summer School on real-world crypto and privacy 2024.
+
+**Authors:** Alexander Dax, Sofia Giampietro, Xenia Hofmeier, Niklas Medinger, and Aurora Naska
+
 
 
 ## License
